@@ -1,6 +1,5 @@
 import socket
 #This is a TCP server file
-#My name is nitin
 def Main():
     host="127.0.0.1"
     port=5006

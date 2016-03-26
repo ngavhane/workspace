@@ -1,6 +1,5 @@
 import time
 from threading import Thread
-#My name is nitin gavhane
 class AsyncWrite(Thread):
     def __init__(self,text,filename):
         Thread.__init__(self)
