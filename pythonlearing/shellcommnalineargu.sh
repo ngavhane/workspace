@@ -1,4 +1,4 @@
-cript that demos, command line args
+script that demos, command line args
 #
 echo "Total number of command line argument are $#"
 echo "$0 is script name"
