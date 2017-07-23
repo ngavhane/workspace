@@ -9,15 +9,8 @@
                 <h1>POST request with Flask</h1>
             </div>
             <div id="content">
-                Crash type :<strong>{{crash_type}}</strong>
-                Crash Content:<strong>({{crash_content}})!</strong>
-            </div>
+                <strong>Classified</strong>
             </div>
         </div>
-        <div id="classify">
-                <form method="post" action="{{ url_for('classify_crash_report') }}">
-                  <input type="submit" title="Classify" />
-                </form>
-            </div>
     </body>
 </html>

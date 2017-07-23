@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
+from classify_crash import ClassifyCrash
 
 app = Flask(__name__)
 #app.config['MONGO_DBNAME'] = 'restdb'
@@ -21,7 +22,7 @@ def connect():
 
 @app.route('/')
 def homepage():
-    return render_template('form_submit.html')
+    return render_template('homepage.html')
 
 @app.route('/layout')
 def layout():
@@ -45,6 +46,17 @@ def submit_crash_report():
     handle.mycollection.insert_one({"crash_type": crash_type, "crash_content": crash_content})
     return render_template('show_crash_content.html', crash_type=crash_type, crash_content=crash_content)
 
+
+@app.route('/classify_crash_report/', methods=['POST'])
+def classify_crash_report():
+    for info in handle.mycollection.find():
+        print "I am in classify crash report tool"
+        crash_type = info["crash_type"]
+        crash_content = info["crash_content"]
+        print "*****"
+        ClassifyCrash().crash_classify(crash_type, crash_content, crash_re="^r()")
+        
+    return render_template('classify_result.html')
 @app.route('/form')
 def form():
     return render_template('form_submit.html')
