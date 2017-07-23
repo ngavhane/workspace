@@ -82,6 +82,15 @@ def show_form():
 def delete_all():
     handle.mycollection.drop()
     return render_template('form_action.html', name="deleted", email="all")
+
+@app.route('/list_all_crashes', methods=['GET'])
+def list_all_crashes():
+    for info in handle.mycollection.find():
+        print info
+        name = info["crash_type"]
+        email = info["crash_content"]
+    
+    return render_template('form_action.html', name=name, email=email)
         
 
 
