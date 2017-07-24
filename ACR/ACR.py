@@ -39,12 +39,10 @@ def crash_submit_page():
 
 @app.route('/submit_crash_report/', methods=['POST'])
 def submit_crash_report():
-    crash_type = request.form['crash_type']
     crash_content = request.form['crash_content']
-    print crash_type
     print crash_content
-    handle.mycollection.insert_one({"crash_type": crash_type, "crash_content": crash_content})
-    return render_template('show_crash_content.html', crash_type=crash_type, crash_content=crash_content)
+    handle.mycollection.insert_one({"crash_content": crash_content})
+    return render_template('show_crash_content.html', crash_content=crash_content)
 
 
 @app.route('/classify_crash_report/', methods=['POST'])
@@ -81,16 +79,15 @@ def show_form():
 @app.route('/delete_all', methods=['POST'])
 def delete_all():
     handle.mycollection.drop()
-    return render_template('form_action.html', name="deleted", email="all")
+    return render_template('form_action.html', crash_content = "deleted all")
 
 @app.route('/list_all_crashes', methods=['GET'])
 def list_all_crashes():
     for info in handle.mycollection.find():
         print info
-        name = info["crash_type"]
-        email = info["crash_content"]
+        crash_content = info["crash_content"]
     
-    return render_template('form_action.html', name=name, email=email)
+    return render_template('form_action.html', crash_content=crash_content)
         
 
 

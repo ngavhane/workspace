@@ -3,12 +3,6 @@
 <div id="container">
             <div id="content">
                 <form method="post" action="{{ url_for('submit_crash_report') }}">
-                  <label for="crash_type">Please enter crash type:</label>
-                  <select name='crash_type'>
-                        <option value='single'>Single</option>
-                        <option value='multiple'>multiple</option>
-                        <option value='frequent'>frequent</option>
-                 </select>
                   <label for="crash_content">Please enter crash content:</label>
                   <input type="text" name="crash_content" /><br />
                   <input type="submit" />
