@@ -1,0 +1,3 @@
+[run]
+source = acr_pyramid
+omit = acr_pyramid/test*
