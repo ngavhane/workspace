@@ -16,8 +16,5 @@ class Views(object):
     
     @view_config(route_name='submit_crash', renderer='templates/submit_crash.jinja2')
     def submit_crash(self):
-        print "nitin"
         print self.request.params.get("crashcontent")
-        #print self.request.params['crashcontent']
-        print "nitin"
         return {'project': 'Acr_Pyramid'}
