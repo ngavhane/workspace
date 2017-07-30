@@ -10,5 +10,7 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('submit_crash_form', '/submit_crash_form')
     config.add_route('submit_crash', '/submit_crash')
+    config.add_route('list_crashes', '/list_crashes')
+    config.add_route('delete_crashes', '/delete_crashes')
     config.scan()
     return config.make_wsgi_app()
