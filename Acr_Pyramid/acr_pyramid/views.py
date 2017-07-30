@@ -10,6 +10,6 @@ class Views(object):
     def my_view(self):
         return {'project': 'Acr_Pyramid'}
 
-    @view_config(route_name='submit_crash', renderer='templates/submit_crash.jinja2')
+    @view_config(route_name='submit_crash_form', renderer='templates/submit_crash.jinja2')
     def my_view1(self):
         return {'project': 'Acr_Pyramid'}
