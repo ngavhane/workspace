@@ -15,17 +15,18 @@ class Views(object):
     def my_view1(self):
         return {'project': 'Acr_Pyramid'}
     
-    @view_config(route_name='submit_crash', renderer='templates/submit_crash.jinja2')
+    @view_config(route_name='submit_crash', renderer='templates/list_crashes.jinja2')
     def submit_crash(self):
         crash_content = self.request.params.get("crashcontent")
         self.handle.mycollection.insert_one({"crash_content": crash_content})
-        return {'project': 'Acr_Pyramid'}
+        return {'crash_content': crash_content}
 
-    @view_config(route_name='list_crashes', renderer='templates/submit_crash.jinja2')
+    @view_config(route_name='list_crashes', renderer='templates/list_crashes.jinja2')
     def list_crashes(self):
+        crash_list = []
         for info in self.handle.mycollection.find():
-            print info
-        return {'project': 'Acr_Pyramid'}
+            crash_list.append(info['crash_content'])
+        return {'crash_content': crash_list}
 
     @view_config(route_name='delete_crashes', renderer='templates/submit_crash.jinja2')
     def delete_crashes(self):
