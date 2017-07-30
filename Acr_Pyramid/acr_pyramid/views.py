@@ -28,7 +28,7 @@ class Views(object):
             crash_list.append(info['crash_content'])
         return {'crash_content': crash_list}
 
-    @view_config(route_name='delete_crashes', renderer='templates/submit_crash.jinja2')
+    @view_config(route_name='delete_crashes', renderer='templates/list_crashes.jinja2')
     def delete_crashes(self):
         self.handle.mycollection.drop()
         return {'project': 'Acr_Pyramid'}
