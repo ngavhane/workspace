@@ -3,7 +3,12 @@
 <body>
         <div>
              <div id="content">
-                Crash Content:<strong>({{crash_content}})!</strong>
+                Crash Content:<strong>({{crash_list}})!</strong>
+                <ul>
+                    {% for crash in crash_list %}
+                    <li><a href="{{ crash }}">{{ crash }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
 </body>

@@ -1,11 +1,13 @@
 from pyramid.view import view_config
 from db_connect import connect
+from crash_helpers import Crashhelpers
 
 class Views(object):
     
     def __init__(self, request):
         self.request = request
         self.handle = connect()
+        self.crash_helper = Crashhelpers()
         
     @view_config(route_name='home', renderer='templates/mytemplate.jinja2')
     def my_view(self):
@@ -19,14 +21,13 @@ class Views(object):
     def submit_crash(self):
         crash_content = self.request.params.get("crashcontent")
         self.handle.mycollection.insert_one({"crash_content": crash_content})
-        return {'crash_content': crash_content}
+        all_crashes = self.crash_helper.list_all_crashes_from_db()
+        return {'crash_list': all_crashes}
 
     @view_config(route_name='list_crashes', renderer='templates/list_crashes.jinja2')
     def list_crashes(self):
-        crash_list = []
-        for info in self.handle.mycollection.find():
-            crash_list.append(info['crash_content'])
-        return {'crash_content': crash_list}
+        all_crashes = self.crash_helper.list_all_crashes_from_db()
+        return {'crash_list': all_crashes}
 
     @view_config(route_name='delete_crashes', renderer='templates/list_crashes.jinja2')
     def delete_crashes(self):
