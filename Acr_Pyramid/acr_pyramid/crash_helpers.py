@@ -9,7 +9,7 @@ class Crashhelpers(object):
         for info in self.handle.mycollection.find():
             print info
             if info['entity_type'] == "crash":
-                crash_list.append(info['crash_content'])
+                crash_list.append(info)
         return crash_list
     
     def list_all_signature_from_db(self):

@@ -20,8 +20,10 @@ class Views(object):
     @view_config(route_name='submit_crash', renderer='templates/list_crashes.jinja2')
     def submit_crash(self):
         crash_content = self.request.params.get("crashcontent")
+        crash_name = self.request.params.get("crashname")
         self.handle.mycollection.insert_one(
-            {"crash_content": crash_content, "entity_type": "crash", 'is_classified': False})
+            {"crash_content": crash_content, "entity_type": "crash", 'is_classified': False,
+             "crash_name": crash_name})
         all_crashes = self.crash_helper.list_all_crashes_from_db()
         return {'crash_list': all_crashes}
 
@@ -52,3 +54,9 @@ class Views(object):
     def list_signatures(self):
         all_signature = self.crash_helper.list_all_signature_from_db()
         return {'signature_list': all_signature}
+
+    @view_config(route_name='get_crash', request_method='GET', renderer='templates/mytemplate.jinja2')
+    def my_view(self):
+        crash_uid = str(self.request.matchdict['crash_uuid'])
+        print "Crash UUid %s" % crash_uid
+        return {'project': 'Acr_Pyramid'}

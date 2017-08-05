@@ -16,5 +16,6 @@ def main(global_config, **settings):
     config.add_route('submit_signature_form', '/submit_signature_form')
     config.add_route('submit_signature', '/submit_signature')
     config.add_route('list_signatures', '/list_signatures')
+    config.add_route('get_crash', '/get_crash/{crash_uuid}')
     config.scan()
     return config.make_wsgi_app()
