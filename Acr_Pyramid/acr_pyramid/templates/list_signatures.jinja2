@@ -5,7 +5,7 @@
              <div id="content">
                 <ul>
                     {% for signature in signature_list %}
-                    <li><a href="{{ signature }}">{{ signature }}</a></li>
+                    <li><a href="{{ '/get_signature/%s' % signature.uuid }}">{{ signature.signature_name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

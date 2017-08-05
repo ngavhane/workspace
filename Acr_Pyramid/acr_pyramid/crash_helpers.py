@@ -18,8 +18,7 @@ class Crashhelpers(object):
         for info in self.handle.mycollection.find():
             print info
             if info['entity_type'] == "signature":
-                signature = info['signature_type'] + " | " + info['signature_content']
-                signature_list.append(signature)
+                signature_list.append(info)
         return signature_list
 
     def get_crash(self, crash_uid):
@@ -27,3 +26,11 @@ class Crashhelpers(object):
             if info["uuid"] == crash_uid:
                 return info
         raise Exception("There is no crash in the system with uuid : %s" % crash_uid)
+    
+    def get_signature(self, signature_uuid):
+        for info in self.handle.mycollection.find():
+            if info["uuid"] == signature_uuid:
+                return info
+        raise Exception("There is no signature in the system with uuid : %s" % signature_uuid)
+    
+        

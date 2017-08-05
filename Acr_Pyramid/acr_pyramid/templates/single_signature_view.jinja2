@@ -1,0 +1,13 @@
+{% extends 'layout.jinja2' %}
+{% block body %}
+<body xmlns="http://www.w3.org/1999/html">
+        <div>
+             <div id="content">
+                <label> Signature Name : </label><span> {{signature_name}}</span> </br>
+                <label> Signature Content : </label><span> {{signature_content}}</span></br>
+                <label> Signature Type : </label><span> {{signature_type}}</span></br>
+                <label> Signature UUid : </label><span> {{signature_uuid}}</span></br>
+            </div>
+        </div>
+</body>
+{% endblock  %}

@@ -8,6 +8,9 @@
                 <label> Is crash classified : </label><span> {{is_crash_classified}}</span></br>
                 <label> Crash UUid : </label><span> {{crash_uuid}}</span></br>
             </div>
+            <div>
+                <a href="{{ '/classify/%s' % crash_uuid }}">Classify This Crash</a></li>
+            </div>
         </div>
 </body>
 {% endblock  %}
