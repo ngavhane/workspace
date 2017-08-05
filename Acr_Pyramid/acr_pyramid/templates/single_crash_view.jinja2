@@ -1,0 +1,13 @@
+{% extends 'layout.jinja2' %}
+{% block body %}
+<body xmlns="http://www.w3.org/1999/html">
+        <div>
+             <div id="content">
+                <label> Crash Name : </label><span> {{crash_name}}</span> </br>
+                <label> Crash Content : </label><span> {{crash_content}}</span></br>
+                <label> Is crash classified : </label><span> {{is_crash_classified}}</span></br>
+                <label> Crash UUid : </label><span> {{crash_uuid}}</span></br>
+            </div>
+        </div>
+</body>
+{% endblock  %}

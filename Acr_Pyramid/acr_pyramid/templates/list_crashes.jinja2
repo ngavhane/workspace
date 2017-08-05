@@ -5,7 +5,7 @@
              <div id="content">
                 <ul>
                     {% for crash in crash_list %}
-                     <li><a href="{{ '/get_crash/%s' % crash._id }}">{{ crash.crash_name }}</a></li>
+                     <li><a href="{{ '/get_crash/%s' % crash.uuid }}">{{ crash.crash_name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

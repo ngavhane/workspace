@@ -1,5 +1,6 @@
 from db_connect import connect
 
+
 class Crashhelpers(object):
     def __init__(self):
         self.handle = connect()
@@ -20,3 +21,9 @@ class Crashhelpers(object):
                 signature = info['signature_type'] + " | " + info['signature_content']
                 signature_list.append(signature)
         return signature_list
+
+    def get_crash(self, crash_uid):
+        for info in self.handle.mycollection.find():
+            if info["uuid"] == crash_uid:
+                return info
+        raise Exception("There is no crash in the system with uuid : %s" % crash_uid)
