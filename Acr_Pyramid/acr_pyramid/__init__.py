@@ -18,6 +18,6 @@ def main(global_config, **settings):
     config.add_route('list_signatures', '/list_signatures')
     config.add_route('get_crash', '/get_crash/{crash_uuid}')
     config.add_route('get_signature', '/get_signature/{signature_uuid}')
-    #config.add_route('classify', '/classify/{crash_uuid}')
+    config.add_route('classify', '/classify/{crash_uuid}')
     config.scan()
     return config.make_wsgi_app()

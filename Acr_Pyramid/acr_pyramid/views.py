@@ -2,6 +2,7 @@ import uuid
 from pyramid.view import view_config
 from db_connect import connect
 from crash_helpers import Crashhelpers
+from match_helpers import MatchHelpers
 
 class Views(object):
 
@@ -9,6 +10,7 @@ class Views(object):
         self.request = request
         self.handle = connect()
         self.crash_helper = Crashhelpers()
+        self.match_helper = MatchHelpers()
 
     @view_config(route_name='home', renderer='templates/mytemplate.jinja2')
     def my_view(self):
@@ -77,8 +79,18 @@ class Views(object):
                 'signature_content': signature['signature_content'],
                 'signature_type': signature['signature_type'], 'count': signature['count']}
 
-    #@view_config(route_name='classify', request_method='POST', renderer='templates/single_crash_view.jinja2')
-    #def my_view(self):
-    #    crash_uid = str(self.request.matchdict['crash_uuid'])
-        
-        
+    @view_config(route_name='classify', request_method='GET', renderer='templates/single_crash_view.jinja2')
+    def classify(self):
+        crash_uid = str(self.request.matchdict['crash_uuid'])
+        crash = self.crash_helper.get_crash(crash_uid=crash_uid)
+        is_matched = False
+        all_signature = self.crash_helper.list_all_signature_from_db()
+        for signature in all_signature:
+            response = self.match_helper.check_if_crash_matches_with_signature(
+                        crash_uuid=crash_uid, signature_uuid=signature['uuid'])
+            if response is True:
+                is_matched = True
+                break
+        crash['is_classified'] = is_matched
+        return {'crash_name': crash['crash_name'], 'crash_uuid': crash['uuid'],
+                'crash_content': crash['crash_content'], 'is_crash_classified': crash['is_classified']}
