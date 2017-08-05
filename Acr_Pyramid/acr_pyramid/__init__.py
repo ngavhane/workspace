@@ -12,5 +12,9 @@ def main(global_config, **settings):
     config.add_route('submit_crash', '/submit_crash')
     config.add_route('list_crashes', '/list_crashes')
     config.add_route('delete_crashes', '/delete_crashes')
+
+    config.add_route('submit_signature_form', '/submit_signature_form')
+    config.add_route('submit_signature', '/submit_signature')
+    config.add_route('list_signatures', '/list_signatures')
     config.scan()
     return config.make_wsgi_app()

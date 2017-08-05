@@ -1,0 +1,21 @@
+{% extends 'layout.jinja2' %}
+{% block body %}
+<body>
+        <div id="container">
+            <div class="title">
+                <h1>Add A Crash signature here</h1>
+            </div>
+            <div id="content">
+                <form method="post" action="submit_signature">
+                  <label for="signaturetype">Select Crash type signature:</label>
+                  <input type="text" name="signaturetype" /><br />
+                   <label for="signaturecontent">Signature Content:</label>
+                  <input type="text" name="signaturecontent" /><br />
+
+                  <input type="submit" />
+                </form>
+            </div>
+            </div>
+        </div>
+    </body>
+{% endblock  %}

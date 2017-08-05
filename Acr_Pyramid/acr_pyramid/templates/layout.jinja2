@@ -22,10 +22,11 @@
     <![endif]-->
     <div class="topnav" id="myTopnav">
         <a href={{request.route_url('submit_crash_form')}} >Submit Crash</a>
-        <a href={{request.route_url('list_crashes')}}>List Crash</a>
-        <a href={{request.route_url('delete_crashes')}}>Delete All Crash</a>
+        <a href={{request.route_url('list_crashes')}}>List Crashes</a>
+        <a href={{request.route_url('delete_crashes')}}>Delete All Crashes</a>
         <a href="#about">Classify Crash</a>
-        <a href="#about">Add Signature</a>
+        <a href={{request.route_url('submit_signature_form')}}>Add Signature</a>
+        <a href={{request.route_url('list_signatures')}}>List Signatures</a>
     </div>
   </head>
   <body>
