@@ -2,13 +2,32 @@
 {% block body %}
 <body>
         <div>
+            <table>
+             <tr>
+                <td>
+                    &emsp; &emsp; Signature Name &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                </td>
+                <td>
+                    Crash Count
+                 </td>
+            </tr>
+            </table>
              <div id="content">
                 <ul>
                     {% for signature in signature_list %}
-                    <li><a href="{{ '/get_signature/%s' % signature.uuid }}">{{ signature.signature_name }}</a></li>
+                    <table>
+                     <tr>
+                     <td>
+                            <li><a href="{{ '/get_signature/%s' % signature.uuid }}">{{ signature.signature_name }}</a></li>
+                     </td>
+                     <td>
+                        <label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {{ signature.crash_count}} </label>
+                     </td>
                     {% endfor %}
+                    </tr>
+                   </table>
                 </ul>
-            </div>
+             </div>
         </div>
 </body>
 {% endblock  %}

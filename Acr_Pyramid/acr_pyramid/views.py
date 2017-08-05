@@ -54,7 +54,8 @@ class Views(object):
         print "submit sig %s" % self.request.params
         self.handle.mycollection.insert_one(
             {"signature_name": signature_name, "signature_content": signature_content, "entity_type": "signature",
-             "signature_type": signature_type, 'count': count, 'uuid': str(uuid.uuid4())})
+             "signature_type": signature_type, 'count': count, 'uuid': str(uuid.uuid4()),
+             "crash_count": 0})
         all_signature = self.crash_helper.list_all_signature_from_db()
         print "all signature %s" % all_signature
         return {'signature_list': all_signature}
@@ -77,7 +78,8 @@ class Views(object):
         signature = self.crash_helper.get_signature(signature_uuid=signature_uuid)
         return {'signature_name': signature['signature_name'], 'signature_uuid': signature['uuid'],
                 'signature_content': signature['signature_content'],
-                'signature_type': signature['signature_type'], 'count': signature['count']}
+                'signature_type': signature['signature_type'], 'count': signature['count'],
+                'crash_count': signature['crash_count']}
 
     @view_config(route_name='classify', request_method='GET', renderer='templates/single_crash_view.jinja2')
     def classify(self):
