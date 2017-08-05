@@ -47,11 +47,12 @@ class Views(object):
         signature_content = self.request.params.get("signaturecontent")
         signature_type = self.request.params.get("signaturetype")
         signature_name = self.request.params.get("signaturename")
+        count = self.request.params.get("count")
         print "signature_type %s" % signature_type
         print "submit sig %s" % self.request.params
         self.handle.mycollection.insert_one(
             {"signature_name": signature_name, "signature_content": signature_content, "entity_type": "signature",
-             "signature_type": signature_type, 'uuid': str(uuid.uuid4())})
+             "signature_type": signature_type, 'count': count, 'uuid': str(uuid.uuid4())})
         all_signature = self.crash_helper.list_all_signature_from_db()
         print "all signature %s" % all_signature
         return {'signature_list': all_signature}
@@ -62,19 +63,21 @@ class Views(object):
         return {'signature_list': all_signature}
 
     @view_config(route_name='get_crash', request_method='GET', renderer='templates/single_crash_view.jinja2')
-    def my_view(self):
+    def get_crash(self):
+        print self.request.matchdict
         crash_uid = str(self.request.matchdict['crash_uuid'])
         crash = self.crash_helper.get_crash(crash_uid=crash_uid)
         return {'crash_name': crash['crash_name'], 'crash_uuid': crash['uuid'],
                 'crash_content': crash['crash_content'], 'is_crash_classified': crash['is_classified']}
 
     @view_config(route_name='get_signature', request_method='GET', renderer='templates/single_signature_view.jinja2')
-    def my_view(self):
+    def get_signature(self):
+        print self.request.matchdict
         signature_uuid = str(self.request.matchdict['signature_uuid'])
         signature = self.crash_helper.get_signature(signature_uuid=signature_uuid)
         return {'signature_name': signature['signature_name'], 'signature_uuid': signature['uuid'],
                 'signature_content': signature['signature_content'],
-                'signature_type': signature['signature_type']}
+                'signature_type': signature['signature_type'], 'count': signature['count']}
 
     #@view_config(route_name='classify', request_method='POST', renderer='templates/single_crash_view.jinja2')
     #def my_view(self):
