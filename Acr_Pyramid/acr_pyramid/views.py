@@ -50,14 +50,11 @@ class Views(object):
         signature_type = self.request.params.get("signaturetype")
         signature_name = self.request.params.get("signaturename")
         count = self.request.params.get("count")
-        print "signature_type %s" % signature_type
-        print "submit sig %s" % self.request.params
         self.handle.mycollection.insert_one(
             {"signature_name": signature_name, "signature_content": signature_content, "entity_type": "signature",
              "signature_type": signature_type, 'count': count, 'uuid': str(uuid.uuid4()),
              "crash_count": 0})
         all_signature = self.crash_helper.list_all_signature_from_db()
-        print "all signature %s" % all_signature
         return {'signature_list': all_signature}
 
     @view_config(route_name='list_signatures', renderer='templates/list_signatures.jinja2')

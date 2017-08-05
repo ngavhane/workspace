@@ -16,7 +16,6 @@ class Crashhelpers(object):
     def list_all_signature_from_db(self):
         signature_list = []
         for info in self.handle.mycollection.find():
-            print info
             if info['entity_type'] == "signature":
                 signature_list.append(info)
         return signature_list
