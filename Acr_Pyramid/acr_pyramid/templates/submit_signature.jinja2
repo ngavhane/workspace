@@ -7,11 +7,15 @@
             </div>
             <div id="content">
                 <form method="post" action="submit_signature">
-                  <label for="signaturetype">Select Crash type signature:</label>
-                  <input type="text" name="signaturetype" /><br />
+                 Select Crash type signature
+                   <select name="signaturetype">
+                        <option value="Single">Single</option>
+                        <option value="Multiple">Multiple</option>
+                    </select> <br />
                    <label for="signaturecontent">Signature Content:</label>
                   <input type="text" name="signaturecontent" /><br />
-
+                  <label for="count">Number of appearances:</label>
+                  <input type="text" name="count" /><br />
                   <input type="submit" />
                 </form>
             </div>

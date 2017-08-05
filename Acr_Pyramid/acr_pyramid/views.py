@@ -20,7 +20,8 @@ class Views(object):
     @view_config(route_name='submit_crash', renderer='templates/list_crashes.jinja2')
     def submit_crash(self):
         crash_content = self.request.params.get("crashcontent")
-        self.handle.mycollection.insert_one({"crash_content": crash_content, "entity_type": "crash"})
+        self.handle.mycollection.insert_one(
+            {"crash_content": crash_content, "entity_type": "crash", 'is_classified': False})
         all_crashes = self.crash_helper.list_all_crashes_from_db()
         return {'crash_list': all_crashes}
 
