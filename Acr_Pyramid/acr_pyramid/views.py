@@ -64,7 +64,6 @@ class Views(object):
 
     @view_config(route_name='get_crash', request_method='GET', renderer='templates/single_crash_view.jinja2')
     def get_crash(self):
-        print self.request.matchdict
         crash_uid = str(self.request.matchdict['crash_uuid'])
         crash = self.crash_helper.get_crash(crash_uid=crash_uid)
         return {'crash_name': crash['crash_name'], 'crash_uuid': crash['uuid'],
@@ -72,7 +71,6 @@ class Views(object):
 
     @view_config(route_name='get_signature', request_method='GET', renderer='templates/single_signature_view.jinja2')
     def get_signature(self):
-        print self.request.matchdict
         signature_uuid = str(self.request.matchdict['signature_uuid'])
         signature = self.crash_helper.get_signature(signature_uuid=signature_uuid)
         return {'signature_name': signature['signature_name'], 'signature_uuid': signature['uuid'],
