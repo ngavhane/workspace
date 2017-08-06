@@ -32,4 +32,7 @@ class Crashhelpers(object):
                 return info
         raise Exception("There is no signature in the system with uuid : %s" % signature_uuid)
     
-        
+    def update_signature_field(self, signature_uuid, field_name, field_value):
+        signature = self.get_signature(signature_uuid=signature_uuid)
+        signature[field_name] = field_value
+        self.handle.mycollection.update_one({'uuid': signature_uuid}, {"$set": signature}, upsert=False)
