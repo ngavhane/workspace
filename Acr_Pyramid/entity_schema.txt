@@ -1,0 +1,16 @@
+
+
+signature = {"signature_name": str,
+             "signature_content": str,
+             "entity_type": "signature",
+             "signature_type": str,
+             'count': int,
+             'uuid': str(uuid.uuid4()),
+             "crash_count": int}
+
+crash = {'signature_name': str,
+         'signature_uuid': str,
+         'signature_content': str,
+         'signature_type': str,
+         'count': int,
+         'crash_count': str}
