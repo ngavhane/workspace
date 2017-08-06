@@ -60,6 +60,9 @@ class Views(object):
     @view_config(route_name='list_signatures', renderer='templates/list_signatures.jinja2')
     def list_signatures(self):
         all_signature = self.crash_helper.list_all_signature_from_db()
+        for signature in all_signature:
+            signature['crash_count'] = self.match_helper.number_of_crashes_matching_with_signature(
+                signature_uuid=signature['uuid'])
         return {'signature_list': all_signature}
 
     @view_config(route_name='get_crash', request_method='GET', renderer='templates/single_crash_view.jinja2')

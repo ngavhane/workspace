@@ -13,3 +13,12 @@ class MatchHelpers(object):
             return True
         else:
             return False
+    
+    def number_of_crashes_matching_with_signature(self, signature_uuid):
+        count = 0
+        signature = self.crash_helper.get_signature(signature_uuid=signature_uuid)
+        all_crashes = self.crash_helper.list_all_crashes_from_db()
+        for crash in all_crashes:
+            if self.check_if_crash_matches_with_signature(crash['uuid'], signature['uuid']):
+                count += 1
+        return count
