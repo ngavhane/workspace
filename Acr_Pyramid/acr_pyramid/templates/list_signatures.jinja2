@@ -13,20 +13,24 @@
             </tr>
             </table>
              <div id="content">
-                <ul>
-                    {% for signature in signature_list %}
-                    <table>
-                     <tr>
-                     <td>
-                            <li><a href="{{ '/get_signature/%s' % signature.uuid }}">{{ signature.signature_name }}</a></li>
-                     </td>
-                     <td>
-                        <label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {{ signature.crash_count}} </label>
-                     </td>
-                    {% endfor %}
-                    </tr>
-                   </table>
-                </ul>
+                {% if signature_list %}
+                    <ul>
+                        {% for signature in signature_list %}
+                            <table>
+                                <tr>
+                                    <td>
+                                        <li><a href="{{ '/get_signature/%s' % signature.uuid }}">{{ signature.signature_name }}</a></li>
+                                    </td>
+                                    <td>
+                                        <label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {{ signature.crash_count}} </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                     <h4> There are no signature in the system</h4>
+                {% endif %}
              </div>
         </div>
 </body>
