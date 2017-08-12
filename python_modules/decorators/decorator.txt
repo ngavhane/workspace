@@ -1,0 +1,60 @@
+Decorator
+
+
+1. Decorators provider a simple syntax for calling higher order functions
+2. A decorator is a function, that takes another function and extends the behaviour of the latter function without explicitly modifying it
+3. In python functions are first class object, so that they be passed as an argument to any other function , just like other simple object for ex: int, float, str
+4. Nested functions: Because of being a first class object, you can define functions, inside other functions  ex:
+5. def parent():
+    	print("Printing from the parent() function.")
+
+    	def first_child():
+        		return "Printing from the first_child() function."
+
+    	def second_child():
+        		return "Printing from the second_child() function."
+
+    	print(first_child())
+    	print(second_child())
+6. In above case if you call parent() you will get  Printing from the parent() function.
+Printing from the first_child() function.
+Printing from the second_child() function   as output.
+7. But if you call first_child() you will get NameError: name 'first_child' is not defined as its not available outside
+
+
+Returning Python Functions:
+Python also allows to return a method
+
+
+def parent(num):
+
+    def first_child():
+        return "Printing from the first_child() function."
+
+    def second_child():
+        return "Printing from the second_child() function."
+
+    try:
+        assert num == 10
+        return first_child
+    except AssertionError:
+        return second_child
+
+foo = parent(10)
+bar = parent(11)
+
+print(foo)
+print(bar)
+
+print(foo())
+print(bar())
+
+
+First 2 statement print out:
+<function first_child at 0x1004a8c08>
+<function second_child at 0x1004a8cf8>
+
+
+second two statements print out :
+Printing from the first_child() function.
+Printing from the second_child() function.
