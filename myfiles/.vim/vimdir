@@ -1,0 +1,6 @@
+.vim/bundle:
+
+ctrlp.vim/  jedi-vim/  nerdtree/  python-mode/ 	tagbar/  vim-airline/  vim-fugitive/  vim-powerline/  Vundle.vim/
+
+.vim/autoload
+pathogen.vim
