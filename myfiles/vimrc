@@ -1,0 +1,80 @@
+#!/bin/bash
+set backspace=indent,eol,start
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+" setting for vim-powerline
+set laststatus=2
+" setting for control p
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+
+" setting for python-mode plugin
+" Override go-to.definition key shortcut to Ctrl-]
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+
+" Override run current python file key shortcut to Ctrl-Shift-e
+let g:pymode_run_bind = "<C-S-e>"
+ "  Override view python doc key shortcut to Ctrl-Shift-d
+let g:pymode_doc_bind = "<C-S-d>"
+map <Leader>g :call RopeGotoDefinition()<CR>
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_goto_def_newwin = "vnew"
+let g:pymode_rope_extended_complete = 1
+let g:pymode_breakpoint = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_builtin_objs = 0
+let g:pymode_syntax_builtin_func = 0
+let g:pymode_options_max_line_length = 120
+"set below if you don't want to fold your code
+set nofoldenable
+highlight ColorColumn ctermbg=gray
+set colorcolumn=120
+" setting nedtree to open whenver i open nedtree
+map <C-n> :NERDTreeToggle<CR>
+
+
+" vhundle stfff
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+ call vundle#end()            " required
+filetype plugin indent on    " required
+
+" line for python path ycm
+let g:ycm_python_binary_path = '/usr/local/bin/python'
+
+" lines for indent plugin
+"let g:indentLine_char = '.'
+"let g:indentLine_setColors = 0
+"let g:indentLine_color_term = 239
+
+
+" Below line allows powerline plugin to show fancy output
+let g:Powerline_symbols = 'fancy'
+
+
+" git gutter plugin changes
+set updatetime=250
+
+" line for side bar
+nmap <F8> :TagbarToggle<CR>
+
+
+" Mapping for split function
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Nerdtree settings
+let g:NERDTreeDirArrows=0
