@@ -28,10 +28,19 @@ class Employee(object):
         self.fname = None
         self.lname = None
     
+    def print_data(self):
+        print self.fname
+        print self.lname
+        print self.email
+        print self.full_name
+        self.full_name = "san jose"
+        print self.full_name
+    
     
 e=Employee("nitin", "gavhane")
 e.fname="pqr"
-print e.email
-e.full_name = "Niteen Gavhane"
-del e.full_name
 
+e.print_data()
+print e.full_name
+
+print e.email
