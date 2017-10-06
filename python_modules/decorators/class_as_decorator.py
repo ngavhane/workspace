@@ -1,14 +1,15 @@
 class ClassAsDecorator(object):
-    
+
     def __call__(self, func):
         def print_info(self, *inargs, **kwargs):
             func(self, *inargs, **kwargs)
             print "I am in __call__ methos of the ClassAsDecorator method"
         return print_info
-    
+    def __init__(self):
+        pass
 
 class TestDecorator(object):
-    
+
     def __init__(self):
         pass
 
