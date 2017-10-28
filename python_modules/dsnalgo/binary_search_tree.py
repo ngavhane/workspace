@@ -37,11 +37,13 @@ class BST:
                 self.insertNode(currentNode.leftChild, val)
             else:
                 currentNode.leftChild = Node(val)
+                currentNode.value = val
         elif(val > currentNode.val):
             if(currentNode.rightChild):
                 self.insertNode(currentNode.rightChild, val)
             else:
                 currentNode.rightChild = Node(val)
+                currentNode.value = val
 
     def find(self, val):
         return self.findNode(self.root, val)
@@ -56,6 +58,25 @@ class BST:
         else:
             return self.findNode(currentNode.rightChild, val)
 
+    def print_data(self):
+        return self.print_node(self.root)
+
+    def print_node(self, current_node):
+        print current_node.val
+        if current_node.leftChild is not None and current_node.rightChild is not None:
+            self.print_node(current_node.leftChild)
+            self.print_node(current_node.rightChild)
+            return
+        elif current_node.leftChild is not None:
+            self.print_node(current_node.rightChild)
+            return
+        elif current_node.rightChild is not None:
+            self.print_node(current_node.leftChild)
+            return
+
+
 b = BST()
 b.setRoot(20)
-b.insert(30)
+b.insert(35)
+b.insert(13)
+b.print_data()
