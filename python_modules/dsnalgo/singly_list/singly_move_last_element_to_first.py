@@ -9,7 +9,7 @@ class Singly_link(object):
         self.head = None
 
     def insert_at_last(self, data):
-        if self.head is None:   # handle scenario where list is empty
+        if self.head is None:   # handle scenario where singly_list is empty
             self.head = Node(data)
             return
         temp = self.head

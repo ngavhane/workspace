@@ -21,11 +21,11 @@ class LinkedList:
         new_node.next = self.head
         self.head = new_node
 
-    # Given a reference to the head of a list
+    # Given a reference to the head of a singly_list
     # and a position, delete the node at a given position
     def deleteNode(self, position):
 
-        # If linked list is empty
+        # If linked singly_list is empty
         if self.head == None:
             return
 
@@ -54,7 +54,7 @@ class LinkedList:
         # store pointer to the next of node to be deleted
         next = temp.next.next
 
-        # Unlink the node from linked list
+        # Unlink the node from linked singly_list
         temp.next = None
 
         temp.next = next

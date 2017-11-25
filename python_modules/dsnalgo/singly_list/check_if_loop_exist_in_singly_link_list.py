@@ -9,7 +9,7 @@ class Singly_link(object):
         self.head = None
 
     def insert_at_last(self, data, point_some_already_present_node=None):
-        if self.head is None:   # handle scenario where list is empty
+        if self.head is None:   # handle scenario where singly_list is empty
             self.head = Node(data)
             return
         temp = self.head
@@ -44,7 +44,7 @@ class Singly_link(object):
 
     def find_length_of_loop(self):
         if not self.is_loop_present_in_list_using_address_check():
-            print "No loop exist in the linked list"
+            print "No loop exist in the linked singly_list"
             return
 
         node_address = []

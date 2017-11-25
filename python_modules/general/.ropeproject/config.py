@@ -28,7 +28,7 @@ def set_prefs(prefs):
 
     # Custom source folders:  By default rope searches the project
     # for finding source folders (folders that should be searched
-    # for finding modules).  You can add paths to that list.  Note
+    # for finding modules).  You can add paths to that singly_list.  Note
     # that rope guesses project source folders correctly most of the
     # time; use this if you have any problems.
     # The folders should be relative to project root and use '/' for
@@ -71,7 +71,7 @@ def set_prefs(prefs):
     # and inspected by rope.
     prefs['extension_modules'] = []
 
-    # Add all standard c-extensions to extension_modules list.
+    # Add all standard c-extensions to extension_modules singly_list.
     prefs['import_dynload_stdmods'] = True
 
     # If `True` modules with syntax errors are considered to be empty.
@@ -87,7 +87,7 @@ def set_prefs(prefs):
     # `from <package> import <module>` by default.
     prefs['prefer_module_from_imports'] = False
 
-    # If `True`, rope will transform a comma list of imports into
+    # If `True`, rope will transform a comma singly_list of imports into
     # multiple separate import statements when organizing
     # imports.
     prefs['split_imports'] = False

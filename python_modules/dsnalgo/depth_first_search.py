@@ -3,7 +3,7 @@
 from collections import defaultdict
 
 # This class represents a directed graph using
-# adjacency list representation
+# adjacency singly_list representation
 class Graph:
 
     # Constructor

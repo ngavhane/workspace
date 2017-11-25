@@ -18,9 +18,9 @@ class SList(object):
     def delete_by_value(self, value):
         all_elemt = self.get_all_list_elements()
         if all_elemt.count(value) ==0:
-            raise Exception("No such element exist in the list")
+            raise Exception("No such element exist in the singly_list")
         if all_elemt.count(value) > 1:
-            raise Exception("More than one such element exist in the list")
+            raise Exception("More than one such element exist in the singly_list")
 
         # if the element that you want to delete is the first one.
         if self.head.data == value:
