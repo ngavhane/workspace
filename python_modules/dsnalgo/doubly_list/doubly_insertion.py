@@ -35,9 +35,8 @@ class DoublyList(object):
 
     def print_d_list_from_head(self):
         temp = self.head
-        while temp.next:
+        while temp:
             print temp.data
-            print "Next data" + str(temp.next.data)
             temp = temp.next
 
     def print_d_list_from_end(self):
