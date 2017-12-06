@@ -21,6 +21,7 @@ class SList(object):
         temp = self.head
         if temp.next is None:
             element = temp.data
+            self.head = None
         else:
             while temp.next:
                 temp_succ = temp
@@ -89,17 +90,11 @@ class BstTree(object):
         print root.data
         self.inorder_traversal(root.right)
 
-
     def level_order_traversal_of_tree_using_queue(self, root):
         queue = Queue()
         if root is not None:
             queue.enqueue(root)
-        #print queue.print_queue_from_front_to_rear()
-
         while not queue.is_queue_empty():
-            print "**queue in while loop ***"
-            queue.print_queue_from_front_to_rear()
-            print "**queue in while loop ***"
             node = queue.dequeue()
             print node.data
             if node.left is not None:
@@ -114,16 +109,13 @@ class BstTree(object):
 
 
 bst = BstTree(10)
-#print "******"
-#bst.inorder_traversal(bst.root)
 bst.insert_node(bst.root, 9)
 bst.insert_node(bst.root, 15)
 bst.insert_node(bst.root, 11)
 bst.insert_node(bst.root, 17)
-#bst.insert_node(bst.root, 7)
-#bst.insert_node(bst.root, 50)
-#bst.insert_node(bst.root, -9)
-#bst.insert_node(bst.root, 21)
+bst.insert_node(bst.root, 7)
+bst.insert_node(bst.root, 50)
+bst.insert_node(bst.root, -9)
 print "****** In order traversal of the tree is ****"
 bst.inorder_traversal(bst.root)
 print "****** Level Order traversal of the tree is :"
