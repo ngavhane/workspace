@@ -19,12 +19,15 @@ class SList(object):
     def delete_at_last(self):
         temp_succ = None
         temp = self.head
-        while temp.next:
-            temp_succ = temp
-            temp = temp.next
-        element = temp.data
-        if temp_succ is not None:
-            temp_succ.next = None
+        if temp.next is None:
+            element = temp.data
+        else:
+            while temp.next:
+                temp_succ = temp
+                temp = temp.next
+            element = temp.data
+            if temp_succ is not None:
+                temp_succ.next = None
         return element
 
     def print_list(self):
@@ -86,29 +89,17 @@ class BstTree(object):
         print root.data
         self.inorder_traversal(root.right)
 
-    def preorder_traversal(self, root):
-        if not root:
-            return
-        print root.data
-        self.preorder_traversal(root.left)
-        self.preorder_traversal(root.right)
-
-    def postorder_traversal(self, root):
-        if not root:
-            return
-        self.postorder_traversal(root.left)
-        self.postorder_traversal(root.right)
-        print root.data
 
     def level_order_traversal_of_tree_using_queue(self, root):
         queue = Queue()
-        print root
         if root is not None:
             queue.enqueue(root)
-        print queue.print_queue_from_front_to_rear()
+        #print queue.print_queue_from_front_to_rear()
 
         while not queue.is_queue_empty():
-            print "queue in while loop %s" % queue.print_queue_from_front_to_rear()
+            print "**queue in while loop ***"
+            queue.print_queue_from_front_to_rear()
+            print "**queue in while loop ***"
             node = queue.dequeue()
             print node.data
             if node.left is not None:
@@ -125,10 +116,10 @@ class BstTree(object):
 bst = BstTree(10)
 #print "******"
 #bst.inorder_traversal(bst.root)
-#bst.insert_node(bst.root, 9)
-#bst.insert_node(bst.root, 15)
-#bst.insert_node(bst.root, 11)
-#bst.insert_node(bst.root, 17)
+bst.insert_node(bst.root, 9)
+bst.insert_node(bst.root, 15)
+bst.insert_node(bst.root, 11)
+bst.insert_node(bst.root, 17)
 #bst.insert_node(bst.root, 7)
 #bst.insert_node(bst.root, 50)
 #bst.insert_node(bst.root, -9)
