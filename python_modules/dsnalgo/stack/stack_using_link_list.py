@@ -38,6 +38,19 @@ class Slist(object):
             temp_succ.next = None
             return ele
 
+    def get_last_element(self):
+        if self.head is None:
+            return
+        elif self.head.next is None:
+            ele = self.head.data
+            return ele
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            ele = temp.data
+            return ele
+
     def print_list(self):
         temp = self.head
         while temp:
@@ -64,12 +77,14 @@ class Stack(object):
     def print_stack(self):
         self.stack.print_list()
 
+    def get_top(self):
+        return self.stack.get_last_element()
+
 
 
 
 s = Stack()
 s.print_stack()
 s.push(3)
-s.print_stack()
-print s.is_stack_empty()
+s.pop()
 s.print_stack()

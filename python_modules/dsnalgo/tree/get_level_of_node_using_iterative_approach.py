@@ -19,6 +19,13 @@ Output for above tree should be
 
 
 
+
+Algorithm:
+The idea is similar to this post. We count the nodes at current level.
+ And for every node, we enqueue its children to queue.
+
+
+
 """
 class Node(object):
     def __init__(self, data=None, next=None):
@@ -137,7 +144,6 @@ class BstTree(object):
                     queue.enqueue(node.right)
             node_list = []
         return " '%s' Node does not exist in the tree" % data
-
 
 
 bst = BstTree(10)
