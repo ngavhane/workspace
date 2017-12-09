@@ -136,9 +136,7 @@ class BstTree(object):
                     count = count + 1
                     queue.enqueue(node.right)
             node_list = []
-        return "No does not exist in the tree"
-
-
+        return " '%s' Node does not exist in the tree" % data
 
 
 
