@@ -1,0 +1,186 @@
+"""
+Write an Efficient Function to Convert a Binary Tree into its Mirror Tree
+1.8
+Mirror of a Tree: Mirror of a Binary Tree T is another Binary Tree M(T) with left
+and right children of all non-leaf nodes interchanged.
+
+MirrorTree1
+Trees in the above figure are mirror of each other
+"""
+class Node(object):
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+
+class SList(object):
+    def __init__(self):
+        self.head = None
+
+    def insert_at_beg(self, data):
+        if self.head is None:
+            self.head = Node(data=data)
+            return
+        temp = self.head
+        self.head = Node(data=data)
+        self.head.next = temp
+
+    def delete_at_last(self):
+        temp_succ = None
+        temp = self.head
+        if temp.next is None:
+            element = temp.data
+            self.head = None
+        else:
+            while temp.next:
+                temp_succ = temp
+                temp = temp.next
+            element = temp.data
+            if temp_succ is not None:
+                temp_succ.next = None
+        return element
+
+    def print_list(self):
+        temp = self.head
+        while temp:
+            print temp.data
+            temp = temp.next
+
+    def is_slist_empty(self):
+        return True if self.head is None else False
+
+class Queue(object):
+    def __init__(self):
+        self.slist = SList()
+
+    def enqueue(self, element):
+        self.slist.insert_at_beg(element)
+
+    def dequeue(self):
+        return self.slist.delete_at_last()
+
+    def print_queue_from_front_to_rear(self):
+        self.slist.print_list()
+
+    def is_queue_empty(self):
+        return self.slist.is_slist_empty()
+
+
+#   Above code is for queue implementation
+
+
+class Tree(object):
+    def __init__(self, data, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
+
+
+class BstTree(object):
+    def __init__(self, data):
+        self.root = Tree(data)
+
+    def insert_node(self, root, data):
+        if root.data >= data:
+            if root.left is None:
+                root.left = Tree(data)
+            else:
+                self.insert_node(root.left, data)
+        elif root.data < data:
+            if root.right is None:
+                root.right = Tree(data)
+            else:
+                self.insert_node(root.right, data)
+
+    def inorder_traversal(self, root):
+        if not root:
+            return
+        self.inorder_traversal(root.left)
+        print root.data
+        self.inorder_traversal(root.right)
+
+    def level_order_traversal_of_tree_using_queue(self, root):
+        queue = Queue()
+        if root is not None:
+            queue.enqueue(root)
+        while not queue.is_queue_empty():
+            node = queue.dequeue()
+            print node.data
+            if node.left is not None:
+                queue.enqueue(node.left)
+            if node.right is not None:
+                queue.enqueue(node.right)
+
+    def form_a_node(self, root, data):
+        queue = Queue()
+        if root is not None:
+            queue.enqueue(root)
+        node = queue.dequeue()
+        while node.data != data:
+            if node.left is not None:
+                queue.enqueue(node.left)
+            if node.right is not None:
+                queue.enqueue(node.right)
+            node = queue.dequeue()
+        return node
+
+    def mirror_of_tree(self, root, new_tree_root):
+        queue = Queue()
+        if root is not None:
+            queue.enqueue(root)
+        while not queue.is_queue_empty():
+            node = queue.dequeue()
+            new_tree_node = self.form_a_node(new_tree_root, node.data)
+            if node.left is not None:
+                queue.enqueue(node.left)
+                new_tree_node.right = Tree(node.left.data)
+            if node.right is not None:
+                queue.enqueue(node.right)
+                new_tree_node.left = Tree(node.right.data)
+
+    def level_order_traversal_of_tree_using_queue_level_by_level(self, root):
+        queue = Queue()
+        node_list = []
+        count = 1
+        if root is not None:
+            queue.enqueue(root)
+        while not queue.is_queue_empty():
+            x = count
+            for i in range(x):
+                node_list.append(queue.dequeue())
+                count = count - 1
+            print(' '.join(str(x.data) for x in node_list))
+            for node in node_list:
+                if node.left is not None:
+                    count = count + 1
+                    queue.enqueue(node.left)
+                if node.right is not None:
+                    count = count + 1
+                    queue.enqueue(node.right)
+            node_list = []
+
+
+
+
+
+
+bst = BstTree(10)
+bst.insert_node(bst.root, 9)
+bst.insert_node(bst.root, 15)
+bst.insert_node(bst.root, 11)
+bst.insert_node(bst.root, 17)
+bst.insert_node(bst.root, 7)
+bst.insert_node(bst.root, 50)
+bst.insert_node(bst.root, -9)
+print "****** In order traversal of the tree is ****"
+bst.inorder_traversal(bst.root)
+print "****** Level Order traversal of the tree is :"
+bst.level_order_traversal_of_tree_using_queue(bst.root)
+bst2 = BstTree(10)
+print "****** In order traversal of the new tree is ****"
+bst.mirror_of_tree(root=bst.root, new_tree_root=bst2.root)
+bst.inorder_traversal(bst2.root)
+
+print "### Level order line by line traversal of new tree"
+bst.level_order_traversal_of_tree_using_queue_level_by_level(bst2.root)
+
