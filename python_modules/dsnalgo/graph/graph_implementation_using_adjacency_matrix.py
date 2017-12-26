@@ -71,17 +71,17 @@ class Graph(object):
         stack.push(start)
         while not stack.is_stack_empty():
             vertex_to_visited = stack.get_top()
+            if not bfs_visited_status[vertex_to_visited]:
+                print vertex_to_visited
+            bfs_visited_status[vertex_to_visited] = True
             vertex_adj = self.edge_map[vertex_to_visited]
             pop = True
-            stack.print_stack_elements()
             for index, value in enumerate(vertex_adj):
-                if value == 1 and vertex_adj[index] is False:
-                    print "setting pop to false"
+                if value == 1 and bfs_visited_status[index] is False:
                     pop = False
+                    break
             if pop:
                stack.pop()
-            bfs_visited_status[vertex_to_visited] = True
-            print vertex_to_visited
             for index, value in enumerate(vertex_adj):
                 if value == 1 and bfs_visited_status[index] is False:
                     if index not in stack.stack:
@@ -106,5 +106,5 @@ print "BFS search on the tree:"
 g.bfs_search(start=0)
 
 print "DFS search on the tree:"
-g.dfs_search(start=4)
+g.dfs_search(start=2)
 
